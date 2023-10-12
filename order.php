@@ -5,8 +5,8 @@ if (!function_exists('curl_version')) {
 
 if ($_SERVER["REQUEST_METHOD"]=="POST") {
     // Required params
-    $token = 'ВАШ ТОКЕН ИЗ КАБИНЕТА';
-    $stream_code = 'ВАШ ПОТОК';
+    $token = 'jMjhBAiF1hLIgctSMjzNudcuFa89gcWIi';
+    $stream_code = '96yFpd8X';
 
     // Fields to send
     $post_fields = [
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
     ];
 
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL,"https://order.drcash.sh/v1/order");
+    curl_setopt($ch, CURLOPT_URL,"http://api.cpa.tl/api/lead/send");
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_fields));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
