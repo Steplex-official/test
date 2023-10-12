@@ -1,0 +1,978 @@
+<!DOCTYPE html><html lang="es" dir="ltr"><head>
+
+<script src="js/jquery.min_1.js"></script>
+
+    <script>
+    function set_validator_errors(){
+        orderValidator.errorTitle = 'Por favor corrige los siguientes errores'; 
+
+        orderValidator.errorNameField = 'Listo'; 
+        orderValidator.errorNameMess = 'Introduzca su nombre'; 
+        
+        orderValidator.errorPhoneField = 'Nombre'; 
+        orderValidator.errorPhoneMess = 'Ingrese el número de teléfono correcto'; 
+        
+        orderValidator.errorAddress = 'Ingrese la dirección correcta'; 
+        orderValidator.errorRequired = 'campo requerido'; 
+        orderValidator.errorMaxLength = 'carácter máximo válido {1}'; 
+        orderValidator.errorMinLength = 'carácter mínimo válido {1}'; 
+        orderValidator.errorEmailField = 'E-mail';
+        orderValidator.errorEmail = 'Correo electrónico no válido especificado';
+        }
+    </script>
+    
+<script>
+
+
+window.app = {
+    timestamp: parseInt((new Date()).getTime() / 1000),
+    jq: jQuery,
+    formAction: window.location.href,
+    leadToken: '6525dc63dc5263.79973773',
+    offers: {"39179":{"id":39179,"country":{"code":"MX","name":"\u041c\u0435\u043a\u0441\u0438\u043a\u0430"},"price":"790","price2":"1580","currency":{"code":"MXN","name":"MXN"},"discount":"","delivery_price":"","link":"","product_sku":"","prepaid_info_html":""}},
+    currentOffer: {"id":39179,"country":{"code":"MX","name":"\u041c\u0435\u043a\u0441\u0438\u043a\u0430"},"price":"790","price2":"1580","currency":{"code":"MXN","name":"MXN"},"discount":"","delivery_price":"","link":"","product_sku":"","prepaid_info_html":""},
+    allowedCountries: ["MX"],
+    _setOfferId: false,
+    streamHid: '96yFpd8X',
+    showcaseUrl: '',
+    disablePhoneMask: Boolean(),
+    
+    setOffer: function (offerId) {
+        if (offerId == this._setOfferId) {
+            return ;
+        }
+        this._setOfferId = offerId;
+        if (offerId) {
+            var offer = app.offers[offerId];
+            var previousOffer = app.currentOffer;
+            app.currentOffer = offer;
+            var event = this.jq.Event("offerchange");
+            event.previousOffer = previousOffer;
+            event.currentOffer = app.currentOffer;
+            this.jq(document).trigger(event);
+            this.updatePage(offer);
+        } else {
+            $('input[name=country]').val('');
+        }
+    },
+    
+    updatePage: function(offer) {
+        $('x-newprice').html(offer.price);
+        $('x-oldprice').html(offer.price2);
+        $('x-currency').html(offer.currency.name);
+        $('input[name=offer], select[name=offer]').val(offer.id);
+        $('input[name=country]').val(offer.country.code);
+    },
+
+    blockForm: function() {
+        // Блокируем кнопки при отправке формы
+        $('input[type=submit]', $(this)).prop( 'disabled', true ).attr( 'disabled', true );
+        $('button', $(this)).prop( 'disabled', true ).attr( 'disabled', true );
+        app.incompleteOrder.lock = true;
+        clearTimeout(app.incompleteOrder.timer);
+    },
+
+    unblockForm: function() {
+        $('input[type=submit]', $(this)).prop( 'disabled', false ).attr( 'disabled', false );
+        $('button[type=submit]', $(this)).prop( 'disabled', false ).attr( 'disabled', false );
+        app.incompleteOrder.lock = false;
+        clearTimeout(app.incompleteOrder.timer);
+    }
+
+};
+
+
+</script><script src="js/form.validate.js"></script>
+<script src="js/interPhoneCodes.js"></script>
+<script src="js/showcase.js"></script>
+<script src="js/form.incomplete.js"></script>
+<script src="js/main2.js"></script>
+
+
+
+    <script src=" https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+      Comprar Relifix económica. Precios, opiniones. Libro Relifix Ahora!
+    </title>
+    <link rel="icon" href="images/favicon.png">
+    <link href="css/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body class="body-banner">
+    <header class="header">
+      <div class="container">
+        <div class="header__top">
+          <div class="header__logo"><img src="images/logo-main.png" alt=""></div>
+          <nav class="nav">
+            <ul class="nav__list">
+              <li class="nav__item">
+                <span class="nav__link"><span class="main-color">En casos de</span> inflamaciones
+                  agudas</span>
+              </li>
+              <li class="nav__item">
+                <span class="nav__link"><span class="main-color">En casos de</span> enfermedades
+                  crónicas</span>
+              </li>
+              <li class="nav__item">
+                <span class="nav__link"><span class="main-color">En casos de</span> cambios
+                  relacionados con la edad</span>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="header__content">
+          <div class="header__about">
+            <h1 class="header__title">
+              <span class="main-color">Relifix —</span> rápido alivio del dolor
+              en sus articulaciones
+            </h1>
+            <ul class="header__features">
+              <li class="header__features-item">
+                <b>Alivia el dolor rápidamente</b> gracias al efecto de mentol
+              </li>
+              <li class="header__features-item">
+                <b>Ayuda a quitar la inflamación</b> gracias a ginkgo biloba
+              </li>
+              <li class="header__features-item">
+                <b>Mejora la movilidad de�&nbsp;las�&nbsp;articulaciones</b>
+                gracias a la capsaicina <br>и y castaño de Indias
+              </li>
+              <li class="header__features-item">
+                <b>No irrita la piel</b> gracias a los componentes
+                <br>atenuantes
+              </li>
+            </ul>
+          </div>
+          <div class="header__prod">
+            <img src="images/prod-main.png" alt="">
+          </div>
+          <div class="form">
+            <div class="form__head">
+              <h3 class="form__title">
+                Aproveche el momento de reservarlo por el precio de oferta
+                especial<span class="form__date nowrap">hasta <span class="date-0"><script type="text/javascript">
+    d = new Date(); p = new Date(d.getTime() -  0*86400000);
+    monthA =  '01,02,03,04,05,06,07,08,09,10,11,12'.split(',');
+    var w = p.getDate();
+    document.write(p.getDate() + '.' + monthA[p.getMonth()] +'.'+ p.getFullYear());
+</script>11.10.2023</span></span>
+              </h3>
+              <div class="price">
+                <div class="price__old">
+                  <p class="price__caption">Precio antiguo</p>
+                  <div class="price__value">
+                    <span class="price__num x_price_previous al-cost-promo"><x-oldprice>1580</x-oldprice> <x-currency>MXN</x-currency></span>
+                  </div>
+                </div>
+                <div class="price__new">
+                  <p class="price__caption">Su precio</p>
+                  <div class="price__value">
+                    <span class="price__num x_price_current al-cost"><x-newprice>790</x-newprice> <x-currency>MXN</x-currency></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form__body">
+              <form action="" method="POST" class="x_order_form al-form">
+                <div style="display: none;">    <input name="csrf_token" type="hidden" value="3f490cd9b382a509dcfd3962a87e81e9:1696980069">
+    <select name="offer" class="form-control country_chang" style="display: none;">
+        <option data-country-code="MX" selected="selected" value="39179">
+            Мексика        </option>
+    </select>
+
+    </div>
+                <p class="form__text">¿Cómo prefiere que se le llame?</p>
+                <label for="">POR EJEMPLO: ANDER SANCHEZ </label>
+                <label class="form__label form__label--name"><input type="text" name="name" placeholder="Mi nombre" required="" autocomplete="name"></label>
+                <label for="">POR EJEMPLO: +52 933 543 342 </label>
+                <label class="form__label form__label--tel"><input type="tel" name="phone" placeholder="Mi teléfono" required="" autocomplete="tel"></label>
+                <button class="btn">
+                  Encargar <span class="btn__small">con descuento</span>
+                </button>
+                <p class="form__lastpack">
+                  Se quedan embalajes por la oferta especial:
+                  <span class="lastpack js-countdown">15</span>
+                </p>
+              </form>
+            </div>
+            <p class="form__footer">Pago después de la recepción</p>
+          </div>
+        </div>
+        <div class="header__woman"><img src="images/girl-header.png" alt=""></div>
+      </div>
+    </header>
+    <section class="factors block">
+      <div class="container">
+        <h2 class="title title-factors">
+          Qué factores <br>pueden causar el dolor en la articulación
+        </h2>
+        <div class="factors__wrap">
+          <div class="factors__item factors__item-age">
+            <p class="factors__name">Cambios relacionados con la edad:</p>
+            <div class="factors__line">
+              <div class="factors__circle">
+                <svg width="34" height="64" viewBox="0 0 34 64">
+                  <path class="factors-path" d="M1022.78,1110a5.835,5.835,0,1,0,5.89,5.84A5.855,5.855,0,0,0,1022.78,1110Zm-21.3,31.68a12.84,12.84,0,0,1,1.18-3.18q3.6-6.93,7.55-13.68c4.01-6.8,14.67-.62,10.64,6.2-0.12.19-.23,0.4-0.35,0.6,2.45,3.09,6.13,4.24,10.72,3.77,2.81-.3,3.48,2.91,2.06,4.68V1174h-2.06v-32.84c-5.57.58-10.26-1.01-13.7-4.32q-2.1,3.78-4.09,7.62l8.71,8.26a4.34,4.34,0,0,1,1.22,4.23c-1.07,4.09-3.14,12.06-3.71,14.27-1.14,4.47-8.28,3.2-7.13-1.3,1.07-4.2,2.6-9.04,3.67-13.24,0.02-.05.03-0.1,0.05-0.14-0.05.14-7.92-6.85-7.92-6.85-0.37,7-.73,14.43-1.09,20.92-0.26,4.62-7.506,4.26-7.244-.38C1000.48,1161.31,1000.98,1150.59,1001.48,1141.68Z" transform="translate(-1000 -1110)"></path>
+                </svg>
+              </div>
+            </div>
+            <ul class="factors__list">
+              <li class="factors__point">desgaste</li>
+              <li class="factors__point">
+                pérdida de la elasticidad de los tejidos
+              </li>
+            </ul>
+          </div>
+          <div class="factors__item factors__item-process">
+            <p class="factors__name">
+              Procesos <span class="next-line">inflamatorios:</span>
+            </p>
+            <div class="factors__line">
+              <div class="factors__circle">
+                <svg width="36" height="64" viewBox="0 0 36 64">
+                  <path class="factors-path" d="M1435.9,1134.95a1.064,1.064,0,0,0-.96-0.62h-12.55l12.38-19.69a1.09,1.09,0,0,0,.04-1.09,1.06,1.06,0,0,0-.93-0.55h-16.94a1.067,1.067,0,0,0-.95.59l-15.88,32a1.065,1.065,0,0,0,.95,1.54h10.88l-11.86,28.39a1.076,1.076,0,0,0,.42,1.32,1.056,1.056,0,0,0,1.37-.22l33.88-40.53A1.1,1.1,0,0,0,1435.9,1134.95Z" transform="translate(-1400 -1113)"></path>
+                </svg>
+              </div>
+            </div>
+            <ul class="factors__list">
+              <li class="factors__point">artritis</li>
+              <li class="factors__point">bursitis</li>
+              <li class="factors__point">sinovitis y otros</li>
+            </ul>
+          </div>
+          <div class="factors__item factors__item-infection">
+            <p class="factors__name">Enfermedades infecciosas:</p>
+            <div class="factors__line">
+              <div class="factors__circle">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                  <path class="factors-path" d="M1848.01,1145a6.5,6.5,0,0,1-12.48,2.53h-4.41a15.336,15.336,0,0,1-2.64,6.37l3.12,3.12a6.491,6.491,0,1,1-3.58,3.58l-3.12-3.12a15.19,15.19,0,0,1-6.37,2.63v4.42a6.5,6.5,0,1,1-5.07,0v-4.42a15.2,15.2,0,0,1-6.36-2.63l-3.12,3.12a6.505,6.505,0,1,1-3.58-3.58l3.11-3.13a15.225,15.225,0,0,1-2.63-6.36h-4.41a6.5,6.5,0,1,1,0-5.07h4.41a15.279,15.279,0,0,1,2.63-6.36l-3.11-3.12a6.5,6.5,0,1,1,3.58-3.58l3.12,3.11a15.334,15.334,0,0,1,6.36-2.63v-4.41a6.505,6.505,0,1,1,5.07,0v4.41a15.225,15.225,0,0,1,6.36,2.63l3.13-3.12a6.486,6.486,0,1,1,3.58,3.59l-3.12,3.12a15.2,15.2,0,0,1,2.63,6.36h4.41A6.5,6.5,0,0,1,1848.01,1145Z" transform="translate(-1784 -1113)"></path>
+                </svg>
+              </div>
+            </div>
+            <ul class="factors__list">
+              <li class="factors__point">síndrome de Reiter</li>
+              <li class="factors__point">enfermedad de Bechterew</li>
+            </ul>
+          </div>
+          <div class="factors__item factors__item-loads">
+            <p class="factors__name">
+              Cargas del mismo tipo sobre la articulación:
+            </p>
+            <div class="factors__line">
+              <div class="factors__circle">
+                <svg width="45" height="61" viewBox="0 0 45 61">
+                  <path class="factors-path" d="M1016.5,1390.27a22.365,22.365,0,1,0,22.5,22.37A22.455,22.455,0,0,0,1016.5,1390.27Zm-10.56,33.46a1.028,1.028,0,0,1-1.44-.05,16.141,16.141,0,0,1-4.22-8.88,1.024,1.024,0,0,1,2.03-.27,14.115,14.115,0,0,0,3.69,7.77A1,1,0,0,1,1005.94,1423.73Zm1.96,2.6a1.015,1.015,0,1,1,1.02-1.01A1.009,1.009,0,0,1,1007.9,1426.33Zm8.6,2.57a16.381,16.381,0,0,1-5.88-1.08,1.02,1.02,0,1,1,.74-1.9,14.281,14.281,0,0,0,5.14.95A1.015,1.015,0,1,1,1016.5,1428.9Zm-16.682-34.14a24.689,24.689,0,0,1,7.812-4.87c-0.16-2.42-.27-4.71-0.32-6.91a54.746,54.746,0,0,1,9.19-.85,53.2,53.2,0,0,1,9.18.86c-0.05,2.28-.15,4.57-0.31,6.9a24.619,24.619,0,0,1,7.82,4.88c0.46-5.05.7-10.06,0.7-14.89a4.252,4.252,0,0,0-3.53-4.32,62.312,62.312,0,0,0-27.68-.01,4.259,4.259,0,0,0-3.561,4.26C999.119,1384.69,999.363,1389.71,999.818,1394.76Z" transform="translate(-994 -1374)"></path>
+                </svg>
+              </div>
+            </div>
+            <ul class="factors__list">
+              <li class="factors__point">andar</li>
+              <li class="factors__point">deporte</li>
+              <li class="factors__point">labor física</li>
+            </ul>
+          </div>
+          <div class="factors__item factors__item-injuries">
+            <p class="factors__name">Traumas diferentes:</p>
+            <div class="factors__line">
+              <div class="factors__circle">
+                <svg width="42.531" height="65" viewBox="0 0 42.531 65">
+                  <path class="factors-path" d="M15.619-.008a6.547,6.547,0,1,1-6.5,6.547A6.523,6.523,0,0,1,15.619-.008ZM42.968,31.036c-0.611-3.994-1.287-7.356-4.013-10.467-3.59-4.1-9.477-6.057-14.542-7.461l-0.024-.031c-3.616-.946-8.349,1.429-8.449,1.544a4.714,4.714,0,0,0-1.981,1.685,3.378,3.378,0,0,0-.609.593c-6.261,7.861-4.853,12.972-.5,21.438a2.709,2.709,0,0,0,3.213,1.5,108.756,108.756,0,0,0-2.033,20.215c0.251,5.64,8.975,5.666,8.723,0a54.492,54.492,0,0,1,2.864-20.486,7.261,7.261,0,0,0,1.274.439,93.405,93.405,0,0,0,3.68,21.882c1.623,5.407,10.043,3.1,8.41-2.337a87.819,87.819,0,0,1-3.544-24.924,24.053,24.053,0,0,0-.495-2.957,33.554,33.554,0,0,0-1.879-5.924l-2.375-3.47a17.308,17.308,0,0,1,3.173,2.206c2.387,2.128,2.528,5.271,2.985,8.252,0.623,4.059,6.735,2.327,6.116-1.7h0Zm-26.64-7.12c0.277,0.328.533,0.667,0.793,1a13.668,13.668,0,0,1,1.48,5.762s-0.435,1.5-1.036,3.843C15.561,30.16,14.39,28.264,16.327,23.916ZM11.4,52.3a0.375,0.375,0,0,0-.423.063,16.8,16.8,0,0,1-3.452,2.36c0.081-.23.162-0.457,0.249-0.667a0.479,0.479,0,0,0-.077-0.5,0.375,0.375,0,0,0-.448-0.1A35.679,35.679,0,0,1,.768,55.918a0.451,0.451,0,0,0-.309.533,0.4,0.4,0,0,0,.483.336A33.734,33.734,0,0,0,6.663,54.7c-0.084.238-.168,0.473-0.258,0.693a0.473,0.473,0,0,0,.076.492,0.372,0.372,0,0,0,.442.1,18.1,18.1,0,0,0,4.557-2.935,0.481,0.481,0,0,0,.062-0.628A0.4,0.4,0,0,0,11.4,52.3Zm0.616-4.969a0.254,0.254,0,0,0-.268-0.161,12.409,12.409,0,0,1-3.157-.18c0.165-.1.33-0.2,0.488-0.29a0.418,0.418,0,0,0,.217-0.34,0.255,0.255,0,0,0-.2-0.268A24.7,24.7,0,0,1,4.207,44.55a0.371,0.371,0,0,0-.452.18,0.293,0.293,0,0,0,.092.431,23.33,23.33,0,0,0,4.275,1.413c-0.171.106-.341,0.209-0.507,0.3a0.414,0.414,0,0,0-.216.337,0.253,0.253,0,0,0,.193.269,13.283,13.283,0,0,0,4.073.348,0.419,0.419,0,0,0,.364-0.354A0.3,0.3,0,0,0,12.012,47.332ZM9.6,49.82a0.223,0.223,0,0,0-.059-0.072,0.2,0.2,0,0,0-.207-0.025,7.8,7.8,0,0,1-1.855.618c0.059-.09.118-0.18,0.177-0.262a0.207,0.207,0,0,0-.2-0.323,17.759,17.759,0,0,1-3.306.293,0.189,0.189,0,0,0-.194.2,0.208,0.208,0,0,0,.2.206,16.992,16.992,0,0,0,2.914-.222c-0.062.093-.122,0.186-0.185,0.271a0.209,0.209,0,0,0,.2.324,8.518,8.518,0,0,0,2.433-.736A0.2,0.2,0,0,0,9.6,49.82Z" transform="translate(-0.469)"></path>
+                </svg>
+              </div>
+            </div>
+            <ul class="factors__list">
+              <li class="factors__point">magulladuras</li>
+              <li class="factors__point">luxaciones</li>
+              <li class="factors__point">fisuras</li>
+            </ul>
+          </div>
+          <div class="factors__item factors__item-podagra">
+            <p class="factors__name">Gota:</p>
+            <div class="factors__line">
+              <div class="factors__circle">
+                <svg width="58" height="58" viewBox="0 0 58 58">
+                  <path class="factors-path factors-path-podagra" d="M27,0h4a6,6,0,0,1,6,6V52a6,6,0,0,1-6,6H27a6,6,0,0,1-6-6V6A6,6,0,0,1,27,0ZM6,21H52a6,6,0,0,1,6,6v4a6,6,0,0,1-6,6H6a6,6,0,0,1-6-6V27A6,6,0,0,1,6,21Z"></path>
+                </svg>
+              </div>
+            </div>
+            <ul class="factors__list">
+              <li class="factors__point">inflamación</li>
+              <li class="factors__point">
+                cristales del ácido úrico en la articulación
+              </li>
+            </ul>
+          </div>
+        </div>
+        <p class="factors__conclusion">
+          Es imposbile liberarse de todas las razones de las enfermedades pero
+          se puede fácilmente eliminar sus consecuencias
+        </p>
+      </div>
+    </section>
+    <section class="solution block wave">
+      <div class="container">
+        <h2 class="title title-solution">
+          <span class="main-color">Relifix</span><br>facilita la solución
+          rápida de los problemas de sus articulaciones
+        </h2>
+        <p class="subtitle">En casos de enfermedades agudas y crónicas</p>
+        <div class="solution__items">
+          <div class="solution__row">
+            <div class="item">
+              <p class="item__descr title-color">
+                <span class="text-bold">Anestesia rápidamente la articulación,</span><br>calmando las neuronas receptoras
+              </p>
+            </div>
+            <div class="item">
+              <p class="item__descr title-color">
+                <span class="text-bold">Normaliza las funciones de la articulación,</span><br>restaurando la cápsula sinovial de la articulación
+              </p>
+            </div>
+          </div>
+          <div class="solution__row">
+            <div class="item">
+              <p class="item__descr title-color">
+                <span class="text-bold">Ayuda a quitar el edema,</span><br>mejorando la circulación de la sangre en el lugar dañado
+              </p>
+            </div>
+            <div class="item">
+              <p class="item__descr title-color">
+                <span class="text-bold">No irrita la piel,</span><br>calmándola con componentes naturales
+              </p>
+            </div>
+          </div>
+          <div class="solution__row">
+            <div class="item">
+              <p class="item__descr title-color">
+                <span class="text-bold">Fortalece la articulación y los vasos,</span><br>normalizando el metabolismo en la articulación
+              </p>
+            </div>
+            <div class="item">
+              <p class="item__descr title-color">
+                <span class="text-bold">Funciona intensamente,</span><br>gracias a la cafeína en la composición, se aumenta la
+                eficacia de todos los ingredientes
+              </p>
+            </div>
+          </div>
+        </div>
+        <h3 class="solution__foot-title title-color">
+          ¡Devuélvase la libertad y facilidad de los movimientos con
+          <span class="main-color">Relifix!</span>
+        </h3>
+        <div class="center">
+          <button class="btn btn-solution ever-popup-btn">
+            Encargar<br><span class="btn__small">con descuento</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <section class="compare block">
+      <div class="container">
+        <h2 class="title">
+          En <span class="main-color">Relifix</span> están consideradas las
+          desventajas de la mayoría de los remedios típicos para las
+          articulaciones
+        </h2>
+        <div class="compare__items">
+          <div class="compare__row first-row">
+            <div class="compare__left">
+              <p class="compare__descr compare__descr-title text-bold">
+                Remedios típicos para las articulaciones
+              </p>
+              <div class="compare__img-wrap">
+                <img class="compare__img" src="images/compare-item-1.png" alt="">
+              </div>
+            </div>
+            <div class="compare__right">
+              <div class="compare__img-wrap">
+                <img class="compare__img compare__logo" src="images/logo-main.png" alt="">
+              </div>
+              <p class="compare__descr compare__descr-prod text-bold">
+                Relifix
+              </p>
+            </div>
+          </div>
+          <div class="compare__row row-2">
+            <div class="compare__left">
+              <p class="compare__descr">
+                Los comprimidos pueden producir un efecto dañoso en los órganos
+                internos
+              </p>
+              <div class="compare__img-wrap">
+                <img class="compare__img" src="images/compare-item-3.png" alt="">
+              </div>
+            </div>
+            <div class="compare__right">
+              <div class="compare__img-wrap">
+                <img class="compare__img" src="images/compare-item-4.png" alt="">
+              </div>
+              <p class="compare__descr">
+                Actúa localmente, directamente en el foco de la enfermedad
+              </p>
+            </div>
+          </div>
+          <div class="compare__row row-3">
+            <div class="compare__left">
+              <p class="compare__descr">
+                Los analgésicos sólo quitan el dolor temporalmente
+              </p>
+              <div class="compare__img-wrap">
+                <img class="item-img" src="images/compare-item-5.png" alt="">
+              </div>
+            </div>
+            <div class="compare__right">
+              <div class="compare__img-wrap">
+                <img class="item-img" src="images/compare-item-6.png" alt="">
+              </div>
+              <p class="compare__descr">
+                Ayuda a eliminar los dolores totalmente
+              </p>
+            </div>
+          </div>
+          <div class="compare__row row-4">
+            <div class="compare__left">
+              <p class="compare__descr">
+                Cremas de efecto agresivo pueden causar quemaduras e
+                irritaciones en la piel
+              </p>
+              <div class="compare__img-wrap">
+                <img class="item-img" src="images/compare-item-7.png" alt="">
+              </div>
+            </div>
+            <div class="compare__right">
+              <div class="compare__img-wrap">
+                <img class="item-img" src="images/compare-item-8.png" alt="">
+              </div>
+              <p class="compare__descr">
+                Cuida de la piel gracias al efecto de los ingredientes
+                emolientes
+              </p>
+            </div>
+          </div>
+          <div class="compare__row row-5">
+            <div class="compare__left">
+              <p class="compare__descr">
+                Condroprotectores deben tomarse de medio año hasta un año
+              </p>
+              <div class="compare__img-wrap">
+                <img class="item-img" src="images/compare-item-9.png" alt="">
+              </div>
+            </div>
+            <div class="compare__right">
+              <div class="compare__img-wrap">
+                <img class="item-img" src="images/compare-item-10.png" alt="">
+              </div>
+              <p class="compare__descr">Curso de la toma -<br>de 30 días</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="use block">
+      <div class="use-girl"><img src="images/bg-use-left.png" alt=""></div>
+      <div class="container">
+        <h2 class="title">
+          Modo del uso de <span class="main-color">Relifix</span>
+        </h2>
+        <ul class="use__list">
+          <li class="use__item use__item--1">
+            <div class="use__img"><img src="images/use__img-1.jpg" alt=""></div>
+            <p class="use__desc use__desc--1">
+              Ponga una pequeña cantidad del gel sobre el lugar problemático
+            </p>
+          </li>
+          <li class="use__item use__item--2">
+            <div class="use__img"><img src="images/use__img-2.jpg" alt=""></div>
+            <p class="use__desc use__desc--2">
+              Repita el procedimiento 3 veces al día
+            </p>
+          </li>
+          <li class="use__item use__item--3">
+            <div class="use__img"><img src="images/use__img-3.jpg" alt=""></div>
+            <p class="use__desc use__desc--3">
+              Curso de la toma —
+              <span class="nowrap main-color">de 30 días</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="reviews block">
+      <div class="container">
+        <h2 class="title title-reviews">
+          Comentarios de los clientes<br>que ya han usado
+          <span class="main-color">Relifix</span>
+        </h2>
+        <div class="reviews__wrap reviews__slider">
+          <div class="reviews__item">
+            <div class="reviews__img"><img src="images/reviews1.jpg" alt=""></div>
+            <div class="reviews__info">
+              <p class="reviews__about">Lucia Rubio</p>
+              <p class="reviews__age">42 años de edad</p>
+              <p class="reviews__quotes">¡Es mucho más fácil moverme!</p>
+              <p class="reviews__text reviews__text-1">
+                Tenía artrosis, me dolían terriblemente las rodillas. De la
+                crema con la que me había untado unos 6 días, en mi piel se me
+                aparecieron varias ampollas hasta un centímetro del tamaño. Tuve
+                que abandonar el curso y tomar medicinas contra alergia. Las
+                articulaciones no me habían permitido vivir todo aquel tiempo.
+                Hasta que una compañera mía me aconsejó Relifix. Pues me puse a
+                untarme con ese gel, y los comprimidos contra alergia ya los
+                tenía a mano. Pero sabe, ¡no me han servido! Y aunque los
+                movimientos bruscos todavía causan dolor en las rodillas y
+                pulseras (llevo usándolo hace 10 días) pero en comparación con
+                lo antes - gran diferencia.
+              </p>
+              <div class="reviews__plus">+</div>
+            </div>
+          </div>
+          <div class="reviews__item">
+            <div class="reviews__img"><img src="images/reviews2.jpg" alt=""></div>
+            <div class="reviews__info">
+              <p class="reviews__about">Javier Ortiz</p>
+              <p class="reviews__age">37 añod de edad</p>
+              <p class="reviews__quotes">
+                Me gusta la velocidad con la que Relifix quita el dolor.
+              </p>
+              <p class="reviews__text">
+                El problema con las articulaciones me surgió por primera vez -
+                se me inflamó el tobillo. Aún no sé la razón por la que ocurrió.
+                El dolor era terrible, la piel se me enrojeció, no podía pisar
+                con el pie. Los primeros días lo untaba con diferentes
+                ungüentos. Sólo uno me ayudaba un poco, con efecto de
+                calentamiento. Quitaba el dolor dentro de unos 40 minutos y
+                tenía efecto 2-3 horas. ¡Los restos sólo hacían el pie graso! Un
+                amigo mío que es deportista vino a verme y trajo un tubo del gel
+                Relifix. Enseguida me unté el pie, ¡y el dolor desapareció
+                antes de que mi amigo se fuera! ¡Es decir, dentro de 7-8
+                minutos! Me untaba tres veces al día, era bastante. La
+                inflamación desapareció totalmente dentro de 5 días. Luego
+                encargué Relifix por el sitio web y seguí el curso para la
+                prevención. Mi resumen sobre el gel - ¡rápido, conveniente y
+                efectivo!
+              </p>
+              <div class="reviews__plus">+</div>
+            </div>
+          </div>
+          <div class="reviews__item">
+            <div class="reviews__img"><img src="images/reviews3.jpg" alt=""></div>
+            <div class="reviews__info">
+              <p class="reviews__about">Ainhoa ​​Jiménez</p>
+              <p class="reviews__age">35 años de edad</p>
+              <p class="reviews__quotes">
+                El gel Relifix recupera perfectamente.
+              </p>
+              <p class="reviews__text">
+                Después de la artritis infecciosa grave hice la pregunta al
+                ortopedista: "¿Cuándo podré ir a mis entrenamientos?" Me
+                respondió: "¿¡Qué entrenamientos?! ¡Ahora tendrá que cuidar su
+                rodilla toda la vida! ¿O quiere ser inválida?" Me había
+                capitulado hasta aquel momento cuando encontré Relifix. Empecé
+                a usar el gel. Ya en 35-40 días pude caminar 6 km sin dolor en
+                las articulaciones. Dentro de otra semana fui a los
+                entrenamientos, y ¡hasta ahora me siento perfecto!
+              </p>
+              <div class="reviews__plus">+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="questions block">
+      <div class="container">
+        <h2 class="title">Nos preguntan</h2>
+        <div class="questions__list">
+          <div class="questions__item">
+            <span class="questions__more"></span>
+            <h3 class="questions__q">
+              ¿Puede <span class="main-color">Relifix</span> causarme alergia?
+            </h3>
+            <p class="questions__a">
+              El gel consiste de componentes naturales. Durante la prueba del
+              gel, ningunas reacciones alérgicas fueron detectadas. Reacciones
+              alérgicas pueden ocurrir sólo en casos de la intolerancia
+              individual a los componentes.
+            </p>
+          </div>
+          <div class="questions__item">
+            <span class="questions__more"></span>
+            <h3 class="questions__q">
+              ¿Convendrá <span class="main-color">Relifix</span> para la
+              espalda?
+            </h3>
+            <p class="questions__a">
+              Sí, ayudará a quitar el dolor y las inflamaciones en casos de
+              protuberancias, radiculitis, osteocondrosis, otras enfermedades y
+              traumas de la columna vertebral.
+            </p>
+          </div>
+          <div class="questions__item">
+            <span class="questions__more"></span>
+            <h3 class="questions__q">
+              Hice una falta durante la formulación del pedido. ¿Qué hacer?
+            </h3>
+            <p class="questions__a">
+              Actualice la página lo más pronto posible y deje su pedido otra
+              vez. El consultor le llamará y corregirá los datos.
+            </p>
+          </div>
+          <div class="questions__item">
+            <span class="questions__more"></span>
+            <h3 class="questions__q">
+              Mi mamá tiene dolor en las rodillas pero no estoy seguro en su
+              diagnóstico. <br>¿Cómo saber si le conviene este gel?
+            </h3>
+            <p class="questions__a">
+              <span class="main-color">Relifix</span> tiene un espectro muy
+              ancho de efecto. Lucha contra casi todos los problemas conocidos
+              de las articulaciones y de los tendones y músculos adyacentes. El
+              gel Relifix ayuda a restaurar la salud de la articulación
+              independientemente de la razón de la ocurrencia del problema – sea
+              trauma, infección u otro daño de los tejidos.
+            </p>
+          </div>
+          <div class="questions__item">
+            <span class="questions__more"></span>
+            <h3 class="questions__q">
+              ¿Qué contraindicaciones existen para el uso de
+              <span class="main-color">Relifix</span>?
+            </h3>
+            <p class="questions__a">
+              No se debe aplicar Relifix sobre la piel dañada. Otra
+              contraindicación es intolerancia individual a los componentes de
+              la preparación.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="order block wave">
+      <div class="container">
+        <h2 class="title">
+          Cómo encargar <span class="main-color">Relifix</span> original
+        </h2>
+        <ul class="order__list">
+          <li class="order__item">
+            <div class="order__img order__img--1">
+              <img src="images/order__img-1.jpg">
+            </div>
+            <div class="order__text">
+              <h3 class="order__title">Rellene la forma del pedido</h3>
+              <p class="order__desc">
+                Sólo necesita indicar su nombre y número de teléfono
+              </p>
+            </div>
+          </li>
+          <li class="order__item">
+            <div class="order__img order__img--2">
+              <img src="images/order__img-2.jpg">
+            </div>
+            <div class="order__text">
+              <h3 class="order__title">Responda a la llamada del operador</h3>
+              <p class="order__desc">
+                Va a precisar sus datos de la dirección y contestar a todas las
+                preguntas sobre <span class="main-color">Relifix</span>
+              </p>
+            </div>
+          </li>
+          <li class="order__item order__item--3">
+            <div class="order__img"><img src="images/order__img-3.jpg"></div>
+            <div class="order__text">
+              <h3 class="order__title">
+                Pague por el paquete después de la recepción
+              </h3>
+              <p class="order__desc">¡Ningunos pagos anticipados!</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="attention block">
+      <div class="container">
+        <h2 class="title title-attention">
+          ¡<span class="attention-color">No aguante dolor </span> en las
+          articulaciones por favor!
+        </h2>
+        <p class="attention__text">
+          Si no se quita la inflamación y no se inician procesos de la
+          restauración, la enfermedad puede agravarse. ¡No permita
+          complicaciones por favor y�&nbsp;actúe�&nbsp;ahora!
+        </p>
+      </div>
+    </section>
+    <section class="header wave -header-bottom">
+      <div class="container">
+        <div class="header__top">
+          <div class="header__logo"><img src="images/logo-main.png" alt=""></div>
+        </div>
+        <div class="header__content">
+          <div class="header__about">
+            <h1 class="header__title">
+              <span class="main-color">Relifix —</span> rápido alivio del dolor
+              en sus articulaciones
+            </h1>
+            <ul class="header__features">
+              <li class="header__features-item">
+                <b>Alivia el dolor rápidamente</b> gracias al efecto de mentol
+              </li>
+              <li class="header__features-item">
+                <b>Ayuda a quitar la inflamación</b> gracias a ginkgo biloba
+              </li>
+              <li class="header__features-item">
+                <b>Mejora la movilidad de�&nbsp;las�&nbsp;articulaciones</b>
+                gracias a la capsaicina <br>
+                y castaño de Indias
+              </li>
+              <li class="header__features-item">
+                <b>No irrita la piel</b> gracias a los componentes<br>
+                atenuantes
+              </li>
+            </ul>
+          </div>
+          <div class="header__prod">
+            <img src="images/prod-main.png" alt="">
+          </div>
+          <div class="form">
+            <div class="form__head">
+              <h3 class="form__title">
+                Aproveche el momento de reservarlo por el precio de oferta
+                especial<span class="form__date nowrap">hasta <span class="date-0"><script type="text/javascript">
+    d = new Date(); p = new Date(d.getTime() -  0*86400000);
+    monthA =  '01,02,03,04,05,06,07,08,09,10,11,12'.split(',');
+    var w = p.getDate();
+    document.write(p.getDate() + '.' + monthA[p.getMonth()] +'.'+ p.getFullYear());
+</script>11.10.2023</span></span>
+              </h3>
+              <div class="price">
+                <div class="price__old">
+                  <p class="price__caption">Precio antiguo</p>
+                  <div class="price__value">
+                    <span class="price__num x_price_previous al-cost-promo"><x-oldprice>1580</x-oldprice> <x-currency>MXN</x-currency></span>
+                  </div>
+                </div>
+                <div class="price__new">
+                  <p class="price__caption">Su precio</p>
+                  <div class="price__value">
+                    <span class="price__num x_price_current al-cost"><x-newprice>790</x-newprice> <x-currency>MXN</x-currency></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form__body">
+              <form action="" method="POST" class="x_order_form al-form" id="form">
+                <div style="display: none;">    <input name="csrf_token" type="hidden" value="3f490cd9b382a509dcfd3962a87e81e9:1696980069">
+    <select name="offer" class="form-control country_chang" style="display: none;">
+        <option data-country-code="MX" selected="selected" value="39179">
+            Мексика        </option>
+    </select>
+
+    </div>
+                <p class="form__text">¿Cómo prefiere que se le llame?</p>
+                <label for="">POR EJEMPLO: ANDER SANCHEZ </label>
+                <label class="form__label form__label--name"><input type="text" name="name" placeholder="Mi nombre" required="" autocomplete="name"></label>
+                <label for="">POR EJEMPLO: +52 933 543 342 </label>
+                <label class="form__label form__label--tel"><input type="tel" name="phone" placeholder="Mi teléfono" required="" autocomplete="tel"></label>
+                <button class="btn">
+                  Encargar <span class="btn__small">con descuento</span>
+                </button>
+                <p class="form__lastpack">
+                  Se quedan embalajes por la oferta especial:
+                  <span class="lastpack js-countdown">15</span>
+                </p>
+              </form>
+            </div>
+            <p class="form__footer">Pago después de la recepción</p>
+          </div>
+        </div>
+        <div class="header__woman"><img src="images/girl-header.png" alt=""></div>
+      </div>
+    </section>
+    <div style="padding: 200px 0;">
+      <center>
+       <p>Galaxy Trade LTD</p>
+<p>16 George street, London, UK. skype: Galaxy-trade, email: Galaxy-trade2000@gmail.com</p>
+
+
+    
+            <p class="conf-link doclinks">
+        <a class="nav-link" href="" onclick="window.open('/policy_en.php'); return false;">Privacy Policy</a>
+          |
+        <a class="nav-link" href="" onclick="window.open('/terms_en.php'); return false;">Terms &amp; Conditions</a>
+      </p>
+      
+    
+      </center>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/countdown.js"></script>
+    <script src="js/index.js"></script>
+    <style>
+      .feedback {
+        width: 75px;
+        height: 70px;
+        position: fixed;
+        right: -15px;
+        top: 15%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #e53c7a;
+        border-top-left-radius: 35px;
+        border-bottom-left-radius: 35px;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: -2px 3px 11px rgb(0 0 0 / 30%);
+        transition: all 0.5s;
+      }
+      .feedback:hover {
+        right: 0;
+      }
+      .feedback img {
+        width: 50px;
+        height: 50px;
+      }
+      .popup-window {
+        font-family: sans-serif;
+        font-family: inherit;
+        display: none;
+        width: 300px;
+        position: fixed;
+        right: 0;
+        top: 15%;
+        padding: 35px 10px;
+        background: #fff;
+        border-radius: 5px 0 0 5px;
+        z-index: 2000;
+        box-shadow: -2px 3px 11px rgb(0 0 0 / 17%);
+      }
+      .popup-window form {
+        width: 100%;
+        min-height: auto;
+        padding: 0;
+        background: inherit;
+        box-shadow: none;
+        height: auto;
+      }
+      .popup-window label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: #333;
+        text-transform: uppercase;
+      }
+      .popup-window input {
+        box-sizing: border-box;
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: none;
+        font-family: inherit;
+        font-size: 16px;
+        margin-bottom: 15px;
+        border: 1px solid #333;
+      }
+      .popup-window input::placeholder {
+        font-size: 16px;
+      }
+      .popup-window button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background: #e53c7a;
+        color: #ffffff;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-top: 15px;
+        border-radius: 20px;
+      }
+      .close-popup {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        width: 27px;
+        height: 27px;
+        background-color: #fff;
+        cursor: pointer;
+      }
+      .close-popup:before {
+        content: "";
+        background: #333;
+        width: 20px;
+        height: 1px;
+        position: absolute;
+        top: 13px;
+        left: 4px;
+        transform: rotate(-45deg);
+      }
+      .close-popup:after {
+        content: "";
+        background: #333;
+        width: 20px;
+        height: 1px;
+        position: absolute;
+        top: 13px;
+        left: 4px;
+        transform: rotate(45deg);
+      }
+      @media screen and (max-width: 576px) {
+        .feedback {
+          top: 35%;
+        }
+        .popup-window {
+          top: 35%;
+        }
+      }
+    </style>
+    <div class="feedback"><img src="images/i-phone.png" alt=""></div>
+    <div class="popup-window">
+      <div class="close-popup"></div>
+      <form method="POST" action="">
+        <div style="display: none;">    <input name="csrf_token" type="hidden" value="3f490cd9b382a509dcfd3962a87e81e9:1696980069">
+    <select name="offer" class="form-control country_chang" style="display: none;">
+        <option data-country-code="MX" selected="selected" value="39179">
+            Мексика        </option>
+    </select>
+
+    </div>
+        <label for="name2">POR EJEMPLO: ANDER SANCHEZ</label>
+        <input id="name2" type="text" name="name" placeholder="Su nombre" required="">
+        <label for="phone2">POR EJEMPLO: +52 933 543 342</label>
+        <input id="phone2" type="tel" name="phone" placeholder="Ingrese su numero de telefono" required="">
+        <button type="submit">Pedir</button>
+      </form>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $(".feedback").click(function () {
+          $(".popup-window").show();
+        });
+        $(".close-popup").click(function () {
+          $(".popup-window").hide();
+        });
+      });
+    </script>
+    <style>
+      input[type="tel"] {
+        outline: none;
+      }
+      a {
+        cursor: pointer !important;
+      }
+      button {
+        cursor: pointer !important;
+      }
+      button:disabled {
+        cursor: not-allowed !important;
+      }
+    </style>
+
+</body></html>
